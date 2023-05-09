@@ -1,18 +1,65 @@
 // let doorState: 'open' | 'close';
 
-class House {
-   door: string;
+class Key {
+   private signature: number;
 
-   constructor(d: 'open' | 'close') {
-      this.door = d;
+   constructor() {
+      this.signature = Math.random();
    }
 
-   showDoorStatus() {
-      console.log(`Door is ${this.door}`);
+   getSignature(): number {
+      return this.signature;
    }
 }
 
-const building = new House('open');
+class Person {
+   name: string;
+   constructor(n: string) {
+      this.name = n;
+   }
+}
 
-console.log(building);
-building.showDoorStatus();
+abstract class House {
+   protected abstract door: 'open' | 'close';
+   public myKey: number;
+
+   constructor(key: Key) {
+      this.myKey = key.getSignature();
+   }
+}
+// tenants: any[];
+// private tenant: {};
+
+// houseKey = new Key('newKey');
+
+// constructor(d: 'open' | 'close') {
+//    this.door = d;
+//    this.tenants = [];
+//    this.tenant = {};
+// }
+
+// openDoor(): void {
+//    console.log(`Door is ${this.door}`);
+// }
+
+// comeIn(newTenant: string): void {
+//    if (this.door === 'closed') {
+//       return;
+//    }
+
+//    this.tenant = new Person(newTenant);
+//    this.tenants.push(this.tenant);
+// }
+
+// showAllTenants(): void {
+//    console.log(this.tenants);
+// }
+
+// const building = new House('open');
+
+// console.log(building);
+// building.openDoor();
+// building.comeIn('alex');
+// building.comeIn('jack');
+// building.comeIn('mary');
+// building.showAllTenants();
